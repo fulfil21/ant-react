@@ -3,7 +3,7 @@ import ReactDOM  from 'react-dom';
 import 'antd/dist/antd.css';
 import SearchInput from './SearchInput'
 import NestedTable from './Table';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, PageHeader, Row, Col } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -11,12 +11,13 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
+import SiteHeader from './SiteHeader';
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider, Content, Footer } = Layout;
 
 class SiderDemo extends React.Component {
   state = {
-    collapsed: false,
+    collapsed: true,
   };
 
   toggle = () => {
@@ -44,10 +45,17 @@ class SiderDemo extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }}>
-            {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
-              onClick: this.toggle,
-            })} 
+          <Row justify="space-between">
+            <Col span={1}>
+              {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                  className: 'trigger',
+                  onClick: this.toggle,
+                })}
+              </Col>
+            <Col span={6} style={{ paddingTop: 10 , paddingRight: 40 , textAlign: 'right'}}>
+              <SiteHeader />
+            </Col>
+          </Row> 
           </Header>
           <Content
             className="site-layout-background"
@@ -60,6 +68,7 @@ class SiderDemo extends React.Component {
             <SearchInput />
             <NestedTable  />
           </Content>
+          <Footer>footer</Footer>
         </Layout>
       </Layout>
     );
