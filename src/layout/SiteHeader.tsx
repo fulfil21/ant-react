@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import LoginPopup from './LoginPopup';
-
+import { Route, Link ,BrowserRouter } from 'react-router-dom';
 import { Breadcrumb, Menu } from 'antd';
 import {
   HomeOutlined,
@@ -35,17 +35,21 @@ const SiteHeader = () => {
       );
     return (
     <>
-    <Breadcrumb>
-        <Breadcrumb.Item href="">
-            <HomeOutlined />
-        </Breadcrumb.Item>
-        <Breadcrumb.Item overlay={menu}>
-            <UserOutlined />
-            <span>회원정보</span>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>Log in</Breadcrumb.Item>
-    </Breadcrumb>
-     </>
+    <BrowserRouter>
+        <Breadcrumb>
+            <Breadcrumb.Item href="">
+                <HomeOutlined />
+            </Breadcrumb.Item>
+            <Breadcrumb.Item overlay={menu}>
+                <UserOutlined />
+                <span>회원정보</span>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+                <Route path="/LoginPopup" component={LoginPopup} />
+            </Breadcrumb.Item>
+        </Breadcrumb>
+    </BrowserRouter>
+    </>
     )
 }
 
