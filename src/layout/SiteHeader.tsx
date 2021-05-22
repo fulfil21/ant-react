@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import LoginPopup from './LoginPopup';
-import { Route, Link ,BrowserRouter } from 'react-router-dom';
+import AccountDrawer from './AccountDrawer';
+import { Route, Link ,BrowserRouter, Switch } from 'react-router-dom';
 import { Breadcrumb, Menu } from 'antd';
 import {
   HomeOutlined,
@@ -17,9 +18,7 @@ const SiteHeader = () => {
     const menu = (
         <Menu>
           <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer" href="">
-            <UsergroupAddOutlined />회원가입
-            </a>
+            <AccountDrawer />
           </Menu.Item>
           <Menu.Item>
             <a target="_blank" rel="noopener noreferrer" href="">
@@ -45,7 +44,11 @@ const SiteHeader = () => {
                 <span>회원정보</span>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-                <Route path="/LoginPopup" component={LoginPopup} />
+                <Switch>
+                    <Route path="/LoginPopup" component={LoginPopup}/>
+                    {/* <Route path="/Logout" component={Logout}/> */}
+                    <LoginPopup />
+                </Switch>
             </Breadcrumb.Item>
         </Breadcrumb>
     </BrowserRouter>
