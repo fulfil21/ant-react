@@ -1,5 +1,5 @@
-import { Input, Space, Select , Row, Col } from 'antd';
-import React, { ChangeEvent, ReactEventHandler, useState } from "react";
+import { Input, Select , Row, Col } from 'antd';
+import IntegerSlider from './IntegerSlider';
 
 const { Search } = Input;
 const { Option } = Select;
@@ -31,6 +31,9 @@ const SearchInput = (value:any) => {
                     >
                     {mallOptions}
                 </Select>
+            </Col>
+            <Col span={7} offset={1}>
+                <IntegerSlider />
             </Col>
         </Row>
         </>

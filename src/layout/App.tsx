@@ -1,11 +1,12 @@
 import '../App.css';
-import SiderDemo from './Layout';
+import { Route, Switch } from 'react-router-dom';
+import SelluvLayout from './SelluvLayout';
 
 
 function App() {
   return (
     <>
-      <SiderDemo />
+      <SelluvLayout />
     </>
   );
 }

@@ -6,7 +6,7 @@ import Sample from "./sample.json";
 const productData = Sample.content;
 console.log(productData);
 
-function NestedTable() {
+function StockTable() {
   const columns = [
     { title: "상품(옵션)코드", dataIndex: "id", key: "id" },
     { title: "스토어", dataIndex: "mallName", key: "mallName" },
@@ -25,8 +25,9 @@ function NestedTable() {
       columns={columns}
       dataSource={productData}
       childrenColumnName='options'
+      style={{ paddingTop: 20 }}
     />
   );
 }
 
-export default NestedTable;
+export default StockTable;
