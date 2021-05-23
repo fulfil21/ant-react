@@ -1,21 +1,46 @@
 import React, { useState } from 'react';
-import { Table, BackTop, Input, Button, Space } from "antd";
+import { Table, Input, Button, Space } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import "antd/dist/antd.css";
-import Sample from "./sample.json";
 
-const productData = Sample.content;
-console.log(productData);
+const data = [
+  {
+    key: '1',
+    name: 'John Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park',
+  },
+  {
+    key: '2',
+    name: 'Joe Black',
+    age: 42,
+    address: 'London No. 1 Lake Park',
+  },
+  {
+    key: '3',
+    name: 'Jim Green',
+    age: 32,
+    address: 'Sidney No. 1 Lake Park',
+  },
+  {
+    key: '4',
+    name: 'Jim Red',
+    age: 32,
+    address: 'London No. 2 Lake Park',
+  },
+];
 
-const StockTable = () => {
- 
-  const [searchText, setsearchText] = useState('');
-  const [searchedColumn, setsearchedColumn] = useState('');
+const Test = () => {
+    const [searchText, setsearchText] = useState('');
+    const [searchedColumn, setsearchedColumn] = useState('');
+
 
   const getColumnSearchProps = dataIndex => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div style={{ padding: 8 }}>
         <Input
+        //   ref={node => {
+        //     searchInput = node;
+        //   }}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
@@ -40,8 +65,10 @@ const StockTable = () => {
             size="small"
             onClick={() => {
               confirm({ closeDropdown: false });
-              setsearchText(selectedKeys[0]);
-              setsearchedColumn(dataIndex);
+              
+                setsearchText(selectedKeys[0]);
+                setsearchedColumn(dataIndex);
+            
             }}
           >
             Filter
@@ -54,44 +81,49 @@ const StockTable = () => {
       record[dataIndex]
         ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
         : '',
+    // onFilterDropdownVisibleChange: visible => {
+    //   if (visible) {
+    //     setTimeout(() => searchInput.select(), 100);
+    //   }
+    // },
+
   });
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
-    setsearchText(selectedKeys[0]);
-    setsearchedColumn(dataIndex);
+      setsearchText(selectedKeys[0]);
+      setsearchedColumn(dataIndex);
   };
 
   const handleReset = clearFilters => {
     clearFilters();
     setsearchText('');
   };
-  
-  const columns = [
-    { title: "상품(옵션)코드", dataIndex: "id", key: "id", ...getColumnSearchProps("id") },
-    { title: "스토어", dataIndex: "mallName", key: "mallName", ...getColumnSearchProps("mallName") },
-    { title: "판매자관리코드", dataIndex: "sellerProductCode", key: "sellerProductCode", ...getColumnSearchProps("sellerProductCode") },
-    { title: "제품(옵션)명", dataIndex: "name", key: "name", ...getColumnSearchProps("name") },
-    { title: "상품(옵션)재고", dataIndex: "stock", key: "stock", ...getColumnSearchProps("stock") },
-    { title: "결과", dataIndex: "regDate", key: "regDate", ...getColumnSearchProps("regDate") },
-  ];
 
-  const rowSelection = {};
+    const columns = [
+        {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
+        width: '30%',
+        ...getColumnSearchProps('name'),
+        },
+        {
+        title: 'Age',
+        dataIndex: 'age',
+        key: 'age',
+        width: '20%',
+        ...getColumnSearchProps('age'),
+        },
+        {
+        title: 'Address',
+        dataIndex: 'address',
+        key: 'address',
+        ...getColumnSearchProps('address'),
+        },
+    ];
+    return <Table columns={columns} dataSource={data} />;
+  }
 
-  return (
-    <>
-    <BackTop />
-    <Table
-      rowKey='id'
-      rowSelection={rowSelection}
-      className="components-table-demo-nested"
-      columns={columns}
-      dataSource={productData}
-      childrenColumnName='options'
-      style={{ paddingTop: 20 }}
-    />
-    </>
-  );
-}
 
-export default StockTable;
+export default Test;

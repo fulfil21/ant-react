@@ -1,21 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import MainHome from '../features/main/MainHome'
 import LoginPopup from '../features/Membership/LoginPopup';
 import AccountDrawer from '../features/Membership/AccountDrawer';
-import { Route, Link , BrowserRouter, Switch } from 'react-router-dom';
+import { Route, Link , Switch } from 'react-router-dom';
 import { Breadcrumb, Menu } from 'antd';
 import {
   HomeOutlined,
   EditOutlined,
-  UsergroupAddOutlined,
   UsergroupDeleteOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 
 
-const SiteHeader = () => {
+const HeaderLink = () => {
     const menu = (
         <Menu>
           <Menu.Item>
@@ -51,4 +47,4 @@ const SiteHeader = () => {
     )
 }
 
-export default SiteHeader;
+export default HeaderLink;

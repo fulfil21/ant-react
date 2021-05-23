@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal , Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import AccountDrawer from './AccountDrawer';
 
 
 const LoginPopup = () => {
@@ -59,8 +60,8 @@ const LoginPopup = () => {
                 Forgot password
                 </a>
             </Form.Item>
-            <Form.Item>
-                <a href="">register now!</a>
+            <Form.Item style={{textAlign: 'right'}}>
+                <AccountDrawer />
             </Form.Item>
             </Form>
         </Modal>

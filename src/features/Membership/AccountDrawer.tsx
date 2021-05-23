@@ -24,7 +24,7 @@ class AccountDrawer extends React.Component {
   render() {
     return (
       <>
-        <Button  onClick={this.showDrawer}>
+        <Button type="link" onClick={this.showDrawer}>
           <PlusOutlined /> New account
         </Button>
         <Drawer
