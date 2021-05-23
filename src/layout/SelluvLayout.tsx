@@ -42,19 +42,19 @@ class SelluvLayout extends React.Component {
                   onClick: this.toggle,
                 })}
             </Col>
-            <Col span={4} offset={1} style={{ paddingTop: 6}}>
+            <Col span={4} offset={0} style={{ paddingTop: 6, paddingLeft: 20}}>
               <Link to="/MainHome">
                 <MainTitle />
               </Link>
             </Col>
-            <Col span={11} offset={0} style={{ paddingTop:18 , }}>
+            <Col span={1} offset={0} style={{ paddingTop:0 , marginLeft : 0}}>
               <Switch>
                 <Route exact path="/MainHome" component={SubtitleMain} />
                 <Route path="/StockPage" component={SubtitleStock} />
                 <Route path="/Purchase" component={SubtitlePurchase} />
               </Switch>
             </Col>
-            <Col span={6} style={{ paddingTop: 10 , paddingRight: 20 , textAlign: 'right'}}>
+            <Col span={18} style={{ paddingTop: 10 , paddingRight:20 , textAlign: 'right'}}>
               <HeaderLink />
             </Col>
           </Row> 

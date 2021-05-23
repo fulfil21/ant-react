@@ -77,7 +77,7 @@ const StockTable = () => {
   ];
 
   const rowSelection = {};
-
+  const DataTotal = productData.length
   return (
     <>
     <BackTop />
@@ -89,6 +89,12 @@ const StockTable = () => {
       dataSource={productData}
       childrenColumnName='options'
       style={{ paddingTop: 20 }}
+      pagination={{ 
+        total: DataTotal , 
+        showTotal: total => `Total ${total} items`,
+        pageSizeOptions: ['10', '20', '50', '100', DataTotal],
+        showSizeChanger : true, 
+      }}
     />
     </>
   );

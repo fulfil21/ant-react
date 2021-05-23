@@ -1,4 +1,4 @@
-import { Typography } from 'antd';
+import { Typography, Badge } from 'antd';
 import Icon from '@ant-design/icons';
 import { ReactComponent as TitleSvg } from '../icon/title.svg';
 
@@ -6,26 +6,26 @@ const { Title } = Typography;
 
 const MainTitle = () => {
     return (
-        <Title level={1}><Icon component={TitleSvg} rotate={340} /> Selluv</Title>
+        <Title level={1}><Icon component={TitleSvg} rotate={350} /> Selluv</Title>
     );
 };
 
 const SubtitleStock = () => {
     return (
-        <Title level={4} code type="secondary">품절관리</Title>
+        <Badge.Ribbon placement="end" text="품절관리" />
     );
 };
 
 
 const SubtitleMain = () => {
     return (
-        <Title level={4} code type="secondary">Main</Title>
+        <Badge.Ribbon placement="end" text="Home" />
     );
 };
 
 const SubtitlePurchase = () => {
     return (
-        <Title level={4} code type="secondary">구매대행</Title>
+        <Badge.Ribbon placement="end" text="구매대행" />
     );
 };
 
