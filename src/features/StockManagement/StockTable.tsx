@@ -6,14 +6,20 @@ import Sample from "./sample.json";
 
 const productData = Sample.content;
 console.log(productData);
-
+interface Props {
+  dataIndex: string;
+  setSelectedKeys: any;
+  selectedKeys: any;
+  confirm: any;
+  clearFilters: any;
+}
 const StockTable = () => {
  
   const [searchText, setsearchText] = useState('');
   const [searchedColumn, setsearchedColumn] = useState('');
 
-  const getColumnSearchProps = dataIndex => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+  const getColumnSearchProps = (dataIndex: string) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }: Props) => (
       <div style={{ padding: 8 }}>
         <Input
           placeholder={`Search ${dataIndex}`}
@@ -49,25 +55,25 @@ const StockTable = () => {
         </Space>
       </div>
     ),
-    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
-    onFilter: (value, record) =>
+    filterIcon: (filtered: any) => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    onFilter: (value: string, record: { [x: string]: { toString: () => string; }; }) =>
       record[dataIndex]
         ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
         : '',
   });
 
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+  const handleSearch = (selectedKeys: React.SetStateAction<string>[], confirm: () => void, dataIndex: React.SetStateAction<string>) => {
     confirm();
     setsearchText(selectedKeys[0]);
     setsearchedColumn(dataIndex);
   };
 
-  const handleReset = clearFilters => {
+  const handleReset = (clearFilters: () => void) => {
     clearFilters();
     setsearchText('');
   };
   
-  const columns = [
+  const columns: any = [
     { title: "상품(옵션)코드", dataIndex: "id", key: "id", ...getColumnSearchProps("id") },
     { title: "스토어", dataIndex: "mallName", key: "mallName", ...getColumnSearchProps("mallName") },
     { title: "판매자관리코드", dataIndex: "sellerProductCode", key: "sellerProductCode", ...getColumnSearchProps("sellerProductCode") },
@@ -77,7 +83,7 @@ const StockTable = () => {
   ];
 
   const rowSelection = {};
-  const DataTotal = productData.length
+  const itemTotal: any = productData.length
   return (
     <>
     <BackTop />
@@ -90,9 +96,9 @@ const StockTable = () => {
       childrenColumnName='options'
       style={{ paddingTop: 20 }}
       pagination={{ 
-        total: DataTotal , 
+        total: itemTotal , 
         showTotal: total => `Total ${total} items`,
-        pageSizeOptions: ['10', '20', '50', '100', DataTotal],
+        pageSizeOptions: ['10', '20', '50', '100', itemTotal],
         showSizeChanger : true, 
       }}
     />
